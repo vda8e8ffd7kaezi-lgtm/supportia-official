@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supportia 訪問看護開業支援</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3B82F6',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:root {
+  --lp-primary: #6c8cff;
+  --lp-secondary: #f38ab5;
+  --lp-deep: #1b2240;
+  --lp-muted: #7c83a1;
+  --lp-sky: #f5f7ff;
+  --lp-card: rgba(255, 255, 255, 0.92);
+}
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  background: linear-gradient(160deg, #fbfcff 0%, #f2f5ff 40%, #fef8ff 100%);
+  color: var(--lp-deep);
+  letter-spacing: 0.01em;
+  line-height: 1.75;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(108, 140, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(255, 146, 178, 0.18), transparent 35%),
+    radial-gradient(circle at 50% 90%, rgba(154, 230, 180, 0.18), transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+h1, h2, h3, h4 {
+  font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+  letter-spacing: -0.02em;
+}
+.lp-shell {
+  position: relative;
+  z-index: 1;
+}
+.lp-section {
+  position: relative;
+  overflow: hidden;
+}
+.hero-section::after,
+.lp-glow::after {
+  content: '';
+  position: absolute;
+  inset: 10%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 60%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-copy,
+.lp-card,
+.lp-outline-card,
+.lp-quote {
+  background: var(--lp-card);
+  border-radius: 32px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 25px 80px rgba(15, 55, 114, 0.13);
+  backdrop-filter: blur(16px);
+}
+.lp-outline-card {
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+.lp-quote {
+  background: rgba(15, 19, 32, 0.9);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.lp-soft-bg {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 30px 90px rgba(114, 137, 218, 0.22);
+}
+.lp-soft-bg::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.05));
+  pointer-events: none;
+}
+.lp-nowrap {
+  white-space: nowrap;
+}
+.lp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--lp-primary);
+}
+.cta-primary,
+.cta-secondary {
+  border-radius: 999px;
+  padding: 0.95rem 2.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cta-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+}
+.cta-secondary {
+  background: linear-gradient(135deg, #10b981, #0d9488);
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(16, 185, 129, 0.25);
+}
+.cta-primary:hover,
+.cta-secondary:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 25px 45px rgba(15, 118, 244, 0.35);
+}
+.lp-check-item {
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.lp-check-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 10px 20px rgba(13, 148, 136, 0.35);
+}
+.lp-grid-card {
+  border-radius: 28px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
+}
+.lp-section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--lp-deep);
+  font-weight: 700;
+}
+.lp-section-title::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin: 1.5rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6c8cff, #f38ab5);
+}
+.lp-bullet-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--lp-deep);
+}
+.lp-highlight {
+  color: var(--lp-primary);
+  font-weight: 600;
+}
+.lp-accent-card {
+  border-radius: 28px;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, rgba(108, 140, 255, 0.9), rgba(243, 138, 181, 0.95));
+  color: #fff;
+  box-shadow: 0 25px 60px rgba(15, 76, 129, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.lp-ornament {
+  position: absolute;
+  inset: auto auto -120px 60%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+.lp-tagline {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: var(--lp-muted);
+  font-weight: 600;
+}
+.lp-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.4), transparent);
+  margin: 3rem auto;
+}
+.gradient-border {
+  position: relative;
+  border-radius: 30px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(108, 140, 255, 0.5), rgba(243, 138, 181, 0.5));
+}
+.gradient-border > div {
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.95);
+}
+.blurred-circle {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  z-index: 0;
+}
+.blurred-circle--blue {
+  background: #d6dbff;
+  top: -60px;
+  right: -40px;
+}
+.blurred-circle--green {
+  background: #ffd8ec;
+  bottom: -50px;
+  left: -30px;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@media (max-width: 1024px) {
+  .hero-copy {
+    margin-bottom: 2rem;
+  }
+  .lp-card,
+  .lp-grid-card,
+  .lp-outline-card {
+    border-radius: 24px;
+  }
+}
+@media (max-width: 640px) {
+  .lp-nowrap {
+    white-space: normal;
+  }
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body class="antialiased text-gray-800">
+<!-- Hero Section -->
+<section class="hero-section lp-section relative min-h-screen flex items-center justify-center overflow-hidden" style="background-image: url('../image/LP1HEROVIEW.png'); background-size: cover; background-position: center;">
+<div class="blurred-circle blurred-circle--blue" aria-hidden="true"></div>
+<div class="blurred-circle blurred-circle--green" aria-hidden="true"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-blue-50/90 via-blue-50/70 to-transparent"></div>
+<div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="flex-1 text-left space-y-6 px-4 lg:px-0">
+<div class="mb-2">
+<h1 class="font-['Pacifico'] text-4xl text-primary">Supportia</h1>
+</div>
+<h2 class="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+訪問看護開業支援
+</h2>
+<p class="text-xl text-gray-700 leading-relaxed max-w-2xl">
+開業準備も、黒字化も、運営の壁も。<br>
+訪問看護のリアルを知る支援者が、ゼロから伴走します。
+</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="cta-primary w-full sm:w-auto">
+無料相談を申し込む
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Message Section -->
+<section class="lp-section py-20 lp-glow reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center space-y-8">
+<p class="lp-tagline text-primary">Vision Statement</p>
+<h2 class="text-4xl md:text-5xl font-bold leading-tight">
+<span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text drop-shadow-sm">「開業」はゴールじゃない。</span>
+</h2>
+<p class="text-2xl text-gray-700 leading-relaxed tracking-wide">
+「続く」訪問看護ステーションを、
+</p>
+<p class="text-2xl text-gray-700 leading-relaxed tracking-wide">
+最小コスト・最大効果で一緒に育てます。
+</p>
+</div>
+</section>
+<!-- Service Features Section -->
+<section class="lp-section py-20 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="text-center mb-16">
+<h2 class="lp-section-title">
+なぜ、今「訪問看護」なのか？
+</h2>
+</div>
+<div class="space-y-6">
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.05s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">高齢化社会が加速している</p>
+</div>
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.15s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">在宅医療のニーズは拡大</p>
+</div>
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.25s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">それでもまだ、訪問看護事業所の数は不足している</p>
+</div>
+</div>
+<div class="mt-12 text-center lp-card p-8 reveal" style="--reveal-delay: 0.3s;">
+<p class="text-2xl font-semibold text-primary tracking-wide">
+地域の未来を支えるために、あなたの訪問看護が必要です。
+</p>
+</div>
+</div>
+</section>
+<!-- Reality Section -->
+<section class="lp-section py-20 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="text-center mb-12">
+<h2 class="lp-section-title">
+訪問看護開業の「現実」
+</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="lp-grid-card text-center border border-blue-100 bg-gradient-to-b from-white to-blue-50 reveal" style="--reveal-delay: 0.05s;">
+<p class="text-blue-800 font-semibold text-lg">初期投資は<br>小さくスタートできる</p>
+</div>
+<div class="lp-grid-card text-center border border-blue-100 bg-gradient-to-b from-white to-blue-50 reveal" style="--reveal-delay: 0.15s;">
+<p class="text-blue-800 font-semibold text-lg">安定した<br>ストック型ビジネス</p>
+</div>
+<div class="lp-grid-card text-center border border-blue-100 bg-gradient-to-b from-white to-blue-50 reveal" style="--reveal-delay: 0.25s;">
+<p class="text-blue-800 font-semibold text-lg">地域貢献度も高く<br>やりがいもある</p>
+</div>
+</div>
+<p class="text-2xl text-gray-800 mb-8 font-bold text-center">でも、甘くない現実も―――。</p>
+<div class="lp-card bg-red-50/90 border border-red-100 text-center mb-10 reveal" style="--reveal-delay: 0.35s;">
+<p class="text-red-600 text-xl font-bold">他業種よりも高い廃業率5.7％！！！</p>
+</div>
+<div class="lp-card p-8 reveal" style="--reveal-delay: 0.45s;">
+<h3 class="text-xl font-bold text-gray-900 mb-6">【訪問看護の廃業理由TOP3】</h3>
+<div class="grid gap-4 md:grid-cols-3">
+<div class="rounded-2xl border border-slate-200 bg-white/80 p-5 text-center shadow-sm reveal" style="--reveal-delay: 0.55s;">
+<p class="text-sm font-semibold text-primary uppercase tracking-[0.2em] mb-2">01</p>
+<p class="font-bold text-gray-900 mb-2">人材不足</p>
+<p class="text-gray-600 text-sm">（常勤換算2.5人を割ると指定取り消しリスクも）</p>
+</div>
+<div class="rounded-2xl border border-slate-200 bg-white/80 p-5 text-center shadow-sm reveal" style="--reveal-delay: 0.65s;">
+<p class="text-sm font-semibold text-primary uppercase tracking-[0.2em] mb-2">02</p>
+<p class="font-bold text-gray-900 mb-2">売上不足</p>
+<p class="text-gray-600 text-sm">（訪問件数が伸びない・単価設計が甘い）</p>
+</div>
+<div class="rounded-2xl border border-slate-200 bg-white/80 p-5 text-center shadow-sm reveal" style="--reveal-delay: 0.75s;">
+<p class="text-sm font-semibold text-primary uppercase tracking-[0.2em] mb-2">03</p>
+<p class="font-bold text-gray-900 mb-2">教育不足</p>
+<p class="text-gray-600 text-sm">（新人・中堅スタッフが育たず崩壊）</p>
+</div>
+</div>
+<div class="mt-10 flex items-center gap-3 w-fit mx-auto px-5 py-3 rounded-full bg-white/80 border border-slate-200 shadow-sm reveal" style="--reveal-delay: 0.9s;">
+<i class="ri-arrow-right-fill text-xl text-gray-800"></i>
+<p class="text-lg font-bold text-gray-800">開業しただけでは「続かない」のが現実です。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Support Details Section -->
+<section class="lp-section py-20 lp-glow reveal">
+<div class="max-w-6xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="text-center mb-16">
+<h2 class="lp-section-title">
+だからこそ、Supportiaは<br>
+"廃業リスク" を最初から "つぶす設計！"
+</h2>
+<h3 class="text-2xl font-bold text-gray-900 mb-12">3大課題対策</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+<div class="lp-grid-card text-center border border-blue-100 reveal" style="--reveal-delay: 0.05s;">
+<div class="mb-4">
+<img src="https://readdy.ai/api/search-image?query=magnifying%20glass%20over%20group%20of%20professional%20people%20icons%2C%20human%20resources%20management%20concept%2C%20recruitment%20search%20illustration%2C%20clean%20blue%20background%2C%20modern%20business%20graphics&width=400&height=300&seq=humanresources001&orientation=landscape" alt="人材不足対策" class="w-full h-48 object-cover object-top rounded-2xl shadow-lg">
+</div>
+<h4 class="text-xl font-bold text-primary mb-2">【人材不足対策】</h4>
+<p class="text-blue-600 font-semibold mb-2">⇒ 求人支援・採用代行</p>
+<p class="text-blue-600">オプションあり</p>
+</div>
+<div class="lp-grid-card text-center border border-blue-100 reveal" style="--reveal-delay: 0.15s;">
+<div class="mb-4">
+<img src="https://readdy.ai/api/search-image?query=growing%20money%20coins%20stack%20with%20green%20plant%20sprout%2C%20financial%20growth%20concept%2C%20business%20success%20illustration%2C%20wooden%20background%2C%20professional%20business%20graphics&width=400&height=300&seq=salesgrowth001&orientation=landscape" alt="売上不足対策" class="w-full h-48 object-cover object-top rounded-2xl shadow-lg">
+</div>
+<h4 class="text-xl font-bold text-primary mb-2">【売上不足対策】</h4>
+<p class="text-blue-600 font-semibold mb-2">⇒ 営業支援・収益設計</p>
+<p class="text-blue-600">サポートあり</p>
+</div>
+<div class="lp-grid-card text-center border border-blue-100 reveal" style="--reveal-delay: 0.25s;">
+<div class="mb-4">
+<img src="https://readdy.ai/api/search-image?query=stack%20of%20colorful%20educational%20books%20on%20grass%20field%2C%20knowledge%20and%20learning%20concept%2C%20professional%20development%20illustration%2C%20bright%20natural%20background%2C%20educational%20graphics&width=400&height=300&seq=education001&orientation=landscape" alt="教育不足対策" class="w-full h-48 object-cover object-top rounded-2xl shadow-lg">
+</div>
+<h4 class="text-xl font-bold text-primary mb-2">【教育不足対策】</h4>
+<p class="text-blue-600 font-semibold mb-2">⇒ 管理者・スタッフ研修</p>
+<p class="text-blue-600">設計あり</p>
+</div>
+</div>
+<div class="lp-card p-8 reveal" style="--reveal-delay: 0.35s;">
+<div class="flex items-center justify-center gap-4 mb-6">
+<i class="ri-play-circle-fill text-3xl text-gray-800"></i>
+<p class="text-xl font-bold text-gray-800">必要な支援だけ、柔軟にカスタマイズできるから、</p>
+</div>
+<p class="text-lg text-gray-700 text-center">
+「かけるコストは最低限」「効果は最大限」。
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Cost Support Section -->
+<section class="lp-section relative py-20 bg-gradient-to-br from-indigo-50 via-blue-50 to-rose-50 overflow-hidden reveal">
+<div class="absolute inset-0 bg-gradient-to-r from-blue-50/95 via-blue-50/85 to-blue-50/95"></div>
+<div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="text-center mb-12">
+<h2 class="lp-section-title">
+コスパ最強の支援スタイル
+</h2>
+<div class="lp-card space-y-6 text-left max-w-4xl mx-auto p-8 reveal" style="--reveal-delay: 0.05s;">
+<div class="flex items-start gap-4">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-xl text-gray-800 leading-relaxed">
+年収600〜700万円クラスのマネージャー人材を、必要なときだけ使える！
+</p>
+</div>
+<div class="flex items-start gap-4">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-xl text-gray-800 leading-relaxed">
+"社内採用"より、圧倒的にコストダウン
+</p>
+</div>
+<div class="flex items-start gap-4">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-xl text-gray-800 leading-relaxed">
+完全オーダーメイド設計で無駄ゼロ
+</p>
+</div>
+<div class="lp-outline-card mt-8 text-center p-8 reveal" style="--reveal-delay: 0.15s;">
+<p class="text-2xl font-bold text-gray-900 mb-4">
+初期費用わずか30万円（税別）〜。
+</p>
+<p class="text-xl font-bold text-primary">
+ここから「続く事業」を本気で作ります。
+</p>
+</div>
+</div>
+<div class="lp-accent-card mt-12 text-center max-w-4xl mx-auto reveal" style="--reveal-delay: 0.25s;">
+<h3 class="text-2xl font-bold mb-6 flex items-center justify-center gap-2">
+<i class="ri-gift-line text-3xl"></i>
+特典もご用意！
+</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-center gap-2">
+<i class="ri-sparkle-line text-xl text-yellow-300"></i>
+<p class="text-lg font-semibold">電子カルテ1か月分無料特典付き</p>
+<i class="ri-sparkle-line text-xl text-yellow-300"></i>
+</div>
+<div class="flex items-center justify-center gap-2">
+<i class="ri-sparkle-line text-xl text-yellow-300"></i>
+<p class="text-lg font-semibold">補助金申請で初期コスト2/3軽減もサポート</p>
+<i class="ri-sparkle-line text-xl text-yellow-300"></i>
+</div>
+<p class="text-center text-lg text-white/90">
+開業時にかかる負担を、できるだけ軽くしてスタートダッシュを応援します！
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Support Plans Section -->
+<section class="lp-section py-20 bg-gradient-to-br from-indigo-100 via-sky-50 to-rose-50 text-gray-800 relative overflow-hidden reveal">
+<div class="max-w-6xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4 text-gray-900 tracking-tight">サポートプラン</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- 基本プラン（必須） -->
+<div class="gradient-border h-full reveal" style="--reveal-delay: 0.05s;">
+<div class="rounded-2xl p-8 text-gray-700 space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-4 h-4 bg-blue-400 rounded-full"></div>
+<h3 class="text-2xl font-bold text-gray-900">基本プラン（必須）</h3>
+</div>
+<p>• 事業設計・方向性明確化</p>
+<p>• ステーション立ち上げ支援</p>
+<p>• 初期研修<br><span class="text-sm ml-4">（訪問看護基礎・接遇・営業）</span></p>
+<p>• 電子カルテ導入フォロー</p>
+<p>• その他、開業準備の伴走支援</p>
+</div>
+</div>
+<!-- オプション（必要に応じて） -->
+<div class="gradient-border h-full reveal" style="--reveal-delay: 0.15s;">
+<div class="rounded-2xl p-8 text-gray-700 space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-4 h-4 bg-blue-400 rounded-full"></div>
+<h3 class="text-2xl font-bold text-gray-900">オプション（必要に応じて）</h3>
+</div>
+<p>• 指定申請代行</p>
+<p>• 求人サポート</p>
+<p>• 教育研修設計</p>
+<p>• 営業支援</p>
+<p>• 運営後サポート など</p>
+<div class="mt-8 text-center">
+<p class="text-2xl font-bold text-amber-500">カスタマイズ自由！</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<div class="bg-white/90 backdrop-blur-lg rounded-2xl p-10 border border-slate-100 max-w-4xl mx-auto space-y-4 reveal" style="--reveal-delay: 0.25s;">
+<p class="text-xl font-bold text-gray-900">必要な支援だけを選んで、無駄なコストを削減</p>
+<p class="text-lg text-gray-700">あなたの状況に合わせて最適なプランをカスタマイズいたします</p>
+<div class="mt-6">
+<button class="cta-secondary w-full sm:w-auto">
+プランの詳細を相談する
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Company Introduction Section -->
+<section class="lp-section py-20 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center lp-shell">
+<div class="mb-12">
+<h2 class="lp-section-title lp-nowrap">Supportiaの使い方はあなた次第！</h2>
+</div>
+<div class="lp-card text-gray-700 text-lg leading-relaxed text-left max-w-2xl mx-auto p-10 space-y-4 reveal" style="--reveal-delay: 0.05s;">
+<p>・ 経営相談パートナー</p>
+<p>・ 採用・面接支援担当</p>
+<p>・ 看護師教育担当</p>
+<p>・ 事務業務整理アドバイザー</p>
+<p>・ 壁打ち相手・心強い伴走者</p>
+<p class="text-center text-xl font-semibold text-gray-800 pt-6">あなたのチームに、もう一人マネージャーを。</p>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="lp-section py-20 bg-gradient-to-br from-blue-50 to-cyan-50 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center lp-shell">
+<div class="lp-outline-card p-12 space-y-6 reveal" style="--reveal-delay: 0.1s;">
+<h2 class="lp-section-title text-gray-900">【無料個別相談受付中！】</h2>
+<p class="text-xl text-gray-700">
+まずは、あなたの想いとプランを聞かせてください。<br>
+あなたの未来に寄り添い、共に形にしていきます。
+</p>
+<div class="flex justify-center">
+<button class="cta-secondary w-full sm:w-auto">
+<i class="ri-mail-line mr-2"></i>
+メールでのお問い合わせ
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Message Section -->
+<section class="lp-section py-20 bg-gradient-to-br from-white via-indigo-50/60 to-rose-50 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center lp-shell">
+<div class="space-y-8 reveal" style="--reveal-delay: 0.1s;">
+<h2 class="text-3xl font-bold text-gray-900">最後に。</h2>
+<div class="space-y-6 text-xl leading-relaxed text-gray-700">
+<p>知らないことがあってもいい。</p>
+<p>でも、相談できる誰かがいること。</p>
+<p>それが、未来を変える力になる。</p>
+<p class="text-2xl font-bold text-gray-900 pt-6">
+あなたの挑戦に、"Supportia"が本気で伴走します。
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<foo_insert>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+  });
+</script>
+</body>
+</html>

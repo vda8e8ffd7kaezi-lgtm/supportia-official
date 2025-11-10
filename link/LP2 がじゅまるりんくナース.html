@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>がじゅまるりんくナース</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" integrity="sha512-V4U26qcKoy0eZZ+j9RnBbTK1Z4VBPakiobP6KyHR+Y6z+4PSJVpaz6RtWLpmjHtkobaN6D+PfYZ7R6pujISiWw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#4ade80',
+        secondary: '#06b6d4'
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '4px',
+        DEFAULT: '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '20px',
+        '2xl': '24px',
+        '3xl': '32px',
+        'full': '9999px',
+        'button': '8px'
+      }
+    }
+  }
+}
+</script>
+<style>
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  color: #065f46;
+  background: linear-gradient(145deg, #ecfdf5 0%, #e0f2fe 45%, #f0fdf4 100%);
+  min-height: 100vh;
+}
+::selection {
+  background: rgba(167, 243, 208, 0.8);
+  color: #064e3b;
+}
+.bg-gradient-medical {
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 50%, #f0f9ff 100%);
+}
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+.hero-frame {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+@media (min-width: 768px) {
+  .hero-frame {
+    padding: 0;
+  }
+}
+.hero-icon-ring {
+  position: relative;
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  box-shadow: inset 0 0 30px rgba(167, 243, 208, 0.35);
+}
+.hero-icon-ring::after {
+  display: none;
+}
+.hero-icon-core {
+  box-shadow: inset 0 10px 25px rgba(16, 185, 129, 0.35);
+}
+.hero-copy p {
+  letter-spacing: 0.02em;
+}
+.hero-highlight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 2.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #22c55e, #059669);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 18px 40px rgba(5, 150, 105, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+}
+.hero-highlight:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 25px 50px rgba(5, 150, 105, 0.35);
+  background: linear-gradient(135deg, #34d399, #059669);
+}
+.hero-highlight:focus-visible {
+  outline: 3px solid rgba(34, 197, 94, 0.45);
+  outline-offset: 4px;
+}
+.section-shell {
+  position: relative;
+  overflow: hidden;
+}
+.section-gradient-one {
+  background: linear-gradient(135deg, #f9fffb 0%, #ecfdf5 45%, #e0f2fe 100%);
+}
+.section-gradient-two {
+  background: linear-gradient(135deg, #f5fffb 0%, #e5f9f0 50%, #dcfce7 100%);
+}
+.section-gradient-three {
+  background: linear-gradient(135deg, #f6fff8 0%, #e8fff1 45%, #d9fbe1 100%);
+}
+.feature-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 1.75rem;
+  padding: 2.25rem 1.75rem 2rem;
+  box-shadow: 0 20px 55px rgba(6, 95, 70, 0.08);
+  border: 1px solid rgba(148, 191, 169, 0.45);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: -40% auto auto -40%;
+  width: 140%;
+  height: 70%;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+  opacity: 0.8;
+  transform: rotate(-4deg);
+}
+.feature-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  pointer-events: none;
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 70px rgba(6, 95, 70, 0.12);
+}
+.feature-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.feature-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-card-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.feature-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #064e3b;
+}
+.feature-card-heading {
+  border-radius: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: rgba(236, 253, 245, 0.8);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 0 10px 25px rgba(6, 95, 70, 0.05);
+}
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.4), transparent);
+  margin: 3rem auto;
+}
+.activity-card {
+  margin-top: 1.5rem;
+  border-radius: 1.75rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  box-shadow: 0 14px 40px rgba(6, 95, 70, 0.07);
+  padding: 2rem;
+}
+.activity-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  background: rgba(236, 253, 245, 0.65);
+  padding: 0.65rem 1.5rem;
+  font-weight: 600;
+}
+.activity-heading-text {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #065f46;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid rgba(16, 185, 129, 0.4);
+  padding-bottom: 0.4rem;
+}
+.section-heading-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #047857;
+  background: rgba(16, 185, 129, 0.12);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+}
+.section-heading-main {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #064e3b;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}
+.join-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(236, 253, 245, 0.9));
+  border-radius: 2rem;
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  box-shadow: 0 18px 55px rgba(6, 95, 70, 0.1);
+  padding: 3rem 2rem;
+}
+.primary-btn {
+  position: relative;
+  border: none;
+  background-image: linear-gradient(120deg, #34d399, #10b981, #2dd4bf);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.25);
+  overflow: hidden;
+}
+.primary-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.3s ease;
+}
+.primary-btn:hover::after {
+  transform: translateX(100%);
+  opacity: 0.6;
+}
+.primary-btn:hover {
+  box-shadow: 0 14px 40px rgba(16, 185, 129, 0.28);
+}
+.primary-btn:focus-visible {
+  outline: 2px solid rgba(45, 212, 191, 0.6);
+  outline-offset: 3px;
+}
+.qna-card {
+  background: rgba(240, 253, 244, 0.9);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 12px 32px rgba(6, 95, 70, 0.06);
+}
+.cta-panel {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 2.5rem;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  box-shadow: 0 25px 70px rgba(6, 95, 70, 0.12);
+  padding: 3.5rem 2rem;
+}
+.cta-panel::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(16, 185, 129, 0.18), rgba(6, 182, 212, 0.18));
+  z-index: -1;
+  opacity: 0.35;
+}
+.cta-qr-card {
+  border-radius: 1.75rem;
+  border: 1px dashed rgba(16, 185, 129, 0.25);
+  background: rgba(236, 253, 245, 0.7);
+  box-shadow: inset 0 0 22px rgba(16, 185, 129, 0.1);
+}
+</style>
+</head>
+<body class="bg-gradient-medical min-h-screen antialiased">
+<!-- Hero Section -->
+<section class="hero-section relative min-h-screen flex items-center justify-center px-4" style="background-image: url('../image/LP2HEROVIEW.png'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-white/65"></div>
+  <div class="relative z-10 w-full max-w-6xl mx-auto">
+    <div class="hero-frame text-center space-y-10 reveal">
+      <div class="text-center space-y-10">
+        <h1 class="text-6xl font-bold text-emerald-800 mb-6 text-shadow">がじゅまるりんくナース</h1>
+        <div class="hero-icon-ring w-32 h-32 bg-white rounded-full flex items-center justify-center mx-auto shadow-lg border-4 border-emerald-200">
+          <div class="hero-icon-core w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center">
+            <img src="../image/gajumarulogo.jpg" alt="がじゅまるりんくナースのロゴ" class="w-24 h-24 object-contain" />
+          </div>
+        </div>
+      </div>
+      <div class="hero-copy space-y-6 max-w-3xl mx-auto text-xl text-gray-900">
+        <p>末永く、幅広く、愛深く。看護師の未来に、つながりを。</p>
+        <p>学びあい、支えあい、自分らしく育つ看護師コミュニティ</p>
+        <p>看護師だって、迷っていい。</p>
+        <p>一緒に考えられる仲間がここにいる。</p>
+        <a href="https://lin.ee/4UoSWJa" class="hero-highlight text-base" target="_blank" rel="noopener noreferrer">【今すぐ話を聞いてみる】</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Community Features Section -->
+<section class="section-shell section-gradient-one py-20">
+  <div class="max-w-6xl mx-auto px-8 relative z-10">
+    <div class="text-center mb-16 space-y-4 reveal">
+      <p class="text-xl text-emerald-700">働き方やキャリアにとらわれず、</p>
+      <p class="text-xl text-emerald-700">学び・交流しながら、自分らしさを育める場所です。</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+      <div class="feature-card-heading md:col-span-2 lg:col-span-4 text-center reveal" style="--reveal-delay: 0.02s;">
+        <p class="text-xl text-emerald-700 font-semibold tracking-wide">こんな方におすすめ！</p>
+      </div>
+      <div class="feature-card reveal" style="--reveal-delay: 0.05s;">
+        <div class="feature-card-content">
+          <div class="feature-card-meta">
+            <span class="feature-card-step">01</span>
+          </div>
+          <p class="feature-card-title text-left">看護師の仲間と<br>つながりたい</p>
+        </div>
+      </div>
+      <div class="feature-card reveal" style="--reveal-delay: 0.1s;">
+        <div class="feature-card-content">
+          <div class="feature-card-meta">
+            <span class="feature-card-step">02</span>
+          </div>
+          <p class="feature-card-title text-left">キャリアや働き方に<br>悩んでいる</p>
+        </div>
+      </div>
+      <div class="feature-card reveal" style="--reveal-delay: 0.15s;">
+        <div class="feature-card-content">
+          <div class="feature-card-meta">
+            <span class="feature-card-step">03</span>
+          </div>
+          <p class="feature-card-title text-left">学びたい、誰かの力になりたい</p>
+        </div>
+      </div>
+      <div class="feature-card reveal" style="--reveal-delay: 0.2s;">
+        <div class="feature-card-content">
+          <div class="feature-card-meta">
+            <span class="feature-card-step">04</span>
+          </div>
+          <p class="feature-card-title text-left">新しいチャレンジに<br>興味がある</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="text-center reveal" style="--reveal-delay: 0.25s;">
+      <p class="activity-heading-text mb-6">🌱 コミュニティでできること〜活動紹介〜</p>
+      <div class="activity-card space-y-3 max-w-2xl mx-auto">
+        <p class="activity-chip text-emerald-700">・ランチ会（オフライン交流）</p>
+        <p class="activity-chip text-emerald-700">・オンラインcafe会＆プチ学び会（夜の情報共有者交流会）</p>
+        <p class="activity-chip text-emerald-700">・キャリア相談・副業紹介も順次予定！</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- How to Join Section -->
+<section class="section-shell section-gradient-two py-20">
+  <div class="max-w-4xl mx-auto px-8 text-center relative z-10">
+    <div class="text-center mb-12 space-y-2 reveal" style="--reveal-delay: 0.05s;">
+      <span class="section-heading-tag">HOW TO JOIN</span>
+      <h2 class="section-heading-main">参加方法</h2>
+    </div>
+    <div class="join-card mb-12 reveal">
+      <div class="mb-12 space-y-4">
+        <p class="text-lg text-emerald-700">がじゅまるりんくナースは</p>
+        <p class="text-lg text-emerald-700">「こんな未来にしたい」「こんなことをやってみたい」</p>
+        <p class="text-lg text-emerald-700">と願う看護師さんたちが集まる場所です。</p>
+        <p class="text-lg text-emerald-700">経験年数や肩書、勤務形態にこだわらず、</p>
+        <p class="text-lg text-emerald-700">あなたの中にある"はじめの一歩"を応援します。</p>
+        <p class="text-lg text-emerald-700">まずは、お話ししましょう🌱</p>
+        <a href="https://lin.ee/4UoSWJa" class="hero-highlight text-base" target="_blank" rel="noopener noreferrer">
+          【お話しする】
+        </a>
+      </div>
+      <p class="text-lg text-emerald-700 mb-6 font-medium">🌿 よくある質問（Q&A）🌿</p>
+      <div class="text-left max-w-3xl mx-auto space-y-6">
+        <div class="qna-card text-emerald-700 reveal" style="--reveal-delay: 0.05s;">
+          <p class="font-medium mb-2">Q. 忙しくて毎回参加できなくても大丈夫？</p>
+          <p class="mb-0"> → A. 大丈夫です！ご自身のペースで参加OKです。</p>
+        </div>
+        <div class="qna-card text-emerald-700 reveal" style="--reveal-delay: 0.1s;">
+          <p class="font-medium mb-2">Q. 看護師免許があれば誰でも参加できますか？</p>
+          <p class="mb-0"> → A. はい、ブランク有・現役・多様な働き方の方、どなたでも歓迎です！</p>
+        </div>
+        <div class="qna-card text-emerald-700 reveal" style="--reveal-delay: 0.15s;">
+          <p class="font-medium mb-2">Q. 参加費用は必要ですか？</p>
+          <p class="mb-0"> → A. 不要です。ランチ会はランチ代(実費)が必要です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CTA Section -->
+<section class="section-shell section-gradient-three py-20 relative overflow-hidden">
+  <div class="relative z-10 max-w-4xl mx-auto px-8 text-center">
+    <div class="cta-panel mx-auto reveal">
+      <div class="cta-panel-inner">
+        <h2 class="text-4xl font-bold text-emerald-800 mb-8">あなたの看護師人生に、やさしさと強さを。</h2>
+        <p class="text-xl text-emerald-700 mb-12">がじゅまるりんくナースで、一緒に育ちあいましょう</p>
+        <div class="space-y-4">
+          <a href="https://lin.ee/4UoSWJa" class="hero-highlight text-base" target="_blank" rel="noopener noreferrer">
+            【今すぐ参加する】
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script id="scroll-effects">
+document.addEventListener('DOMContentLoaded', () => {
+  const revealElements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px',
+    }
+  );
+
+  revealElements.forEach((el) => observer.observe(el));
+});
+</script>
+<script id="button-interactions">
+document.addEventListener('DOMContentLoaded', function() {
+  const interactiveElements = document.querySelectorAll('.hero-highlight');
+  interactiveElements.forEach((el) => {
+    el.addEventListener('click', function() {
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = 'scale(1)';
+      }, 150);
+    });
+    el.style.transition = 'all 0.2s ease';
+  });
+});
+</script>
+</body>
+</html>
