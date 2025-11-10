@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react';
 
 const ensureTrailingSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`);
-const lp1SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/LP1%20訪問看護開業支援.html`;
-const lp2SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/LP2%20がじゅまるりんくナース.html`;
 const basePath = ensureTrailingSlash(__BASE_PATH__);
+const lp1SupportLink = `${basePath}link/LP1%20訪問看護開業支援.html`;
+const lp2SupportLink = `${basePath}link/LP2%20がじゅまるりんくナース.html`;
+const contactUrl = `${basePath}contact`;
 const heroImages = [
   `${basePath}image/TOPHERO1.png`,
   `${basePath}image/TOPHERO2.png`,
@@ -88,7 +89,7 @@ const HomePage: React.FC = () => {
                   <i className="ri-facebook-fill text-base"></i>
                 </a>
               </div>
-              <a href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
+              <a href={contactUrl} className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
                 <i className="ri-phone-line text-lg mr-1"></i>
                 お問い合わせ
               </a>
@@ -746,7 +747,7 @@ const HomePage: React.FC = () => {
       <footer className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center">
-            <a href="/" className="inline-flex items-center justify-center mb-8" style={{ fontFamily: '"Pacifico", serif' }}>
+            <a href={basePath} className="inline-flex items-center justify-center mb-8" style={{ fontFamily: '"Pacifico", serif' }}>
               <span className="text-3xl text-blue-200">Supportia</span>
             </a>
             <div className="flex justify-center gap-6 mb-8 text-white">
