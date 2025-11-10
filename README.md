@@ -1,11 +1,11 @@
 # Supportia Static Site
 
-This project contains the static assets for Supportia's marketing presence. It includes the main top page (`index-static.html`), individual landing pages (`link/LP1 訪問看護開業支援.html`, `link/LP2 がじゅまるりんくナース.html`), shared imagery, and build tooling for the Vite/Tailwind pipeline in `src/`.
+This project contains the static assets for Supportia's marketing presence. It includes the main top page (`index-static.html`), individual landing pages (`link/lp1-opening-support.html`, `link/lp2-gajumaru-nurse.html`), shared imagery, and build tooling for the Vite/Tailwind pipeline in `src/`.
 
 ## Repository Layout
 - `index-static.html` — exported top page with home + contact views controlled by `showPage(...)`.
-- `link/LP1 訪問看護開業支援.html` — LP for the開業支援 program.
-- `link/LP2 がじゅまるりんくナース.html` — LP for the community offering; shares assets under `image/`.
+- `link/lp1-opening-support.html` — LP for the開業支援 program.
+- `link/lp2-gajumaru-nurse.html` — LP for the community offering; shares assets under `image/`.
 - `src/` — source code for the SPA version (Vite + React + Tailwind).
 - `image/`, `link/`, `事業内容/`, `問い合わせ先情報/` — static resources and reference documents.
 

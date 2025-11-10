@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 
 const ensureTrailingSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`);
-const lp1SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/LP1%20訪問看護開業支援.html`;
-const lp2SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/LP2%20がじゅまるりんくナース.html`;
+const lp1SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/lp1-opening-support.html`;
+const lp2SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/lp2-gajumaru-nurse.html`;
 const basePath = ensureTrailingSlash(__BASE_PATH__);
 const heroImages = [
   `${basePath}image/TOPHERO1.png`,
