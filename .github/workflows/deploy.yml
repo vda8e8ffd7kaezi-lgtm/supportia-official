@@ -34,7 +34,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          BASE_PATH: /supportia/
+          BASE_PATH: /${{ github.event.repository.name }}/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
