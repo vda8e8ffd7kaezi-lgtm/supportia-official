@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 const ensureTrailingSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`);
 const lp1SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/lp1-opening-support.html`;
 const lp2SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/lp2-gajumaru-nurse.html`;
+const lp3SupportLink = `${ensureTrailingSlash(__BASE_PATH__)}link/lp3-operational-support.html`;
 const basePath = ensureTrailingSlash(__BASE_PATH__);
 const heroImages = [
   `${basePath}image/TOPHERO1.png`,
@@ -242,7 +243,7 @@ const HomePage: React.FC = () => {
                   <br />管理者教育（評価制度導入・理念浸透）
                 </p>
                 <a
-                  href={`${basePath}link/LP3%20訪問看護運営サポート.html`}
+                  href={lp3SupportLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center text-indigo-600 font-semibold"
