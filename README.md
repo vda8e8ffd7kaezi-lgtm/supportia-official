@@ -36,3 +36,4 @@ Static HTML exports (e.g., `index-static.html`, files under `link/`) can be open
 
 ## Deployment
 Deployment is handled by copying the built `dist/` output (or the curated static HTML files) to the production hosting environment. Coordinate with the Supportia ops team to align on the exact upload process.
+# supportia-official
