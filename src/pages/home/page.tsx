@@ -34,10 +34,8 @@ const HomePage: React.FC = () => {
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-10">
-              <h1 className="text-3xl font-bold text-blue-600" style={{ fontFamily: '"Pacifico", serif' }}>
-                <span className="inline-flex items-center text-3xl text-blue-600 drop-shadow-sm tracking-wide">
-                  Supportia
-                </span>
+              <h1 className="flex items-center cursor-pointer">
+                <img src={`${basePath}image/logo.png`} alt="Supportiaロゴ" className="h-10 w-10 object-contain" />
               </h1>
               <nav className="hidden lg:flex space-x-8">
               <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
@@ -155,29 +153,57 @@ const HomePage: React.FC = () => {
         <div className="absolute -top-24 -right-16 w-64 h-64 bg-emerald-200/50 rounded-full blur-3xl" aria-hidden="true"></div>
         <div className="absolute -bottom-24 -left-20 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl" aria-hidden="true"></div>
         <div className="relative w-full px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+            {/* がんばるあなたへ・メンター支援 */}
+            <div className="bg-gradient-to-br from-cyan-50 to-emerald-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+              <div className="relative h-64">
+                <img
+                  src="image/Career support.jpg"
+                  alt="看護師キャリアサポート"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-cyan-500 bg-opacity-20"></div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 aspect-square bg-cyan-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                    <i className="ri-graduation-cap-line text-2xl text-cyan-600"></i>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-800">看護師キャリアサポート</h3>
+                    <p className="text-sm text-gray-600">Career support</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  現場で“迷わない看護師”を増やすための伴走支援
+                  <br />キャリア相談（方向性整理・道筋設計）
+                  <br />管理者スキル育成（判断力・役割の強化）
+                </p>
+              </div>
+            </div>
+
             {/* 個別相談・人材紹介 */}
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
               <div className="relative h-64">
                 <img
-                  src="https://readdy.ai/api/search-image?query=Professional%20Japanese%20female%20nurse%20providing%20individual%20consultation%20and%20business%20support%20for%20home%20nursing%20care%20startup%2C%20Japanese%20healthcare%20professional%20woman%20in%20modern%20medical%20office%20setting%2C%20clean%20and%20professional%20environment%2C%20Asian%20female%20medical%20professional%20offering%20guidance%20and%20support&width=400&height=300&seq=consultation-service-female-jp&orientation=landscape"
-                  alt="個別相談"
+                  src="image/Opening support.jpg"
+                  alt="訪問看護 開業サポート"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-blue-500 bg-opacity-20"></div>
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <div className="w-12 aspect-square bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                     <i className="ri-user-heart-line text-2xl text-blue-600"></i>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800">訪問看護開業・運営支援</h3>
-                    <p className="text-sm text-gray-600">Operational support</p>
+                    <h3 className="text-lg font-bold text-gray-800">訪問看護 開業サポート</h3>
+                    <p className="text-sm text-gray-600">Opening support</p>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-4">
-                  立ち上げから黒字化・M&Aまで、伴走型でサポートします。
+                  開業サポート（申請・事業計画・集客）
                 </p>
                 <a
                   href={lp1SupportLink}
@@ -191,34 +217,35 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* がんばるあなたへ・メンター支援 */}
-            <div className="bg-gradient-to-br from-cyan-50 to-emerald-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+            {/* 訪問看護 運営サポート */}
+            <div className="bg-gradient-to-br from-indigo-50 via-blue-50 to-slate-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
               <div className="relative h-64">
                 <img
-                  src="https://readdy.ai/api/search-image?query=Experienced%20senior%20Japanese%20female%20nurse%20mentoring%20younger%20Japanese%20nurse%2C%20supportive%20healthcare%20mentorship%20scene%20in%20Japan%2C%20medical%20facility%20background%2C%20professional%20guidance%20and%20support%20between%20Asian%20healthcare%20professionals%2C%20encouraging%20atmosphere%2C%20medical%20education%20setting%20with%20Japanese%20nurses&width=400&height=300&seq=mentorship-support-jp&orientation=landscape"
-                  alt="メンター支援"
+                  src="image/Operational support.jpg"
+                  alt="訪問看護 運営サポート"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-cyan-500 bg-opacity-20"></div>
+                <div className="absolute inset-0 bg-indigo-500 bg-opacity-20"></div>
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mr-4">
-                    <i className="ri-graduation-cap-line text-2xl text-cyan-600"></i>
+                  <div className="w-12 aspect-square bg-indigo-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                    <i className="ri-settings-3-line text-2xl text-indigo-600"></i>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800">キャリア相談・人材紹介</h3>
-                    <p className="text-sm text-gray-600">Career counseling &amp; Recruitment</p>
+                    <h3 className="text-lg font-bold text-gray-800">訪問看護 運営サポート</h3>
+                    <p className="text-sm text-gray-600">Operational support</p>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">
-                  「今のままでいいのかな？」そんな迷いに寄り添い、自分らしい働き方を見つけるお手伝いをします.
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  運営支援（マネジメント・営業・人材育成）
+                  <br />管理者教育（評価制度導入・理念浸透）
                 </p>
                 <a
-                  href={lp1SupportLink}
+                  href={`${basePath}link/LP3%20訪問看護運営サポート.html`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-cyan-600 font-semibold"
+                  className="flex items-center text-indigo-600 font-semibold"
                 >
                   <span>詳細を見る</span>
                   <i className="ri-arrow-right-line ml-2"></i>
@@ -230,24 +257,30 @@ const HomePage: React.FC = () => {
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
               <div className="relative h-64">
                 <img
-                  src="https://readdy.ai/api/search-image?query=Japanese%20female%20nurse%20career%20development%20and%20growth%2C%20professional%20advancement%20in%20healthcare%20Japan%2C%20modern%20medical%20training%20facility%2C%20career%20planning%20session%20with%20Japanese%20healthcare%20professionals%2C%20bright%20and%20inspiring%20medical%20environment%2C%20professional%20development%20atmosphere%20with%20Asian%20nurses&width=400&height=300&seq=career-support-jp&orientation=landscape"
-                  alt="キャリア支援"
+                  src="image/Community management.jpg"
+                  alt="コミュニティ運営・チームサポーター"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-emerald-500 bg-opacity-20"></div>
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+                  <div className="w-12 aspect-square bg-emerald-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                     <i className="ri-calendar-check-line text-2xl text-emerald-600"></i>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800">がじゅまるりんくナース運営</h3>
+                    <h3 className="text-lg font-bold text-gray-800">コミュニティ運営・チームサポーター</h3>
                     <p className="text-sm text-gray-600">Community management</p>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">
-                  看護師同士でつながり、学び、支え合える場所。月1オンラインcafe会、リアルランチ会など開催中！
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  <span className="font-semibold text-emerald-700">がじゅまるリンクナース運営</span>
+                  <br />
+                  <span className="text-sm text-gray-600">学び合い・相談・キャリア形成のプラットフォーム</span>
+                  <br />
+                  <span className="font-semibold text-emerald-700">ナースウィッシュ訪問看護チームサポーター</span>
+                  <br />
+                  <span className="text-sm text-gray-600">訪問看護チームの関係性づくりと実務フォロー</span>
                 </p>
                 <a
                   href={lp2SupportLink}
@@ -746,9 +779,9 @@ const HomePage: React.FC = () => {
       <footer className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center">
-            <a href="/" className="inline-flex items-center justify-center mb-8" style={{ fontFamily: '"Pacifico", serif' }}>
-              <span className="text-3xl text-blue-200">Supportia</span>
-            </a>
+            <div className="inline-flex items-center justify-center mb-8">
+              <img src={`${basePath}image/logo.jpg`} alt="Supportiaロゴ" className="h-12 w-12 object-contain" />
+            </div>
             <div className="flex justify-center gap-6 mb-8 text-white">
               <a
                 href="https://www.instagram.com/kaneda_nurse_supportia/"

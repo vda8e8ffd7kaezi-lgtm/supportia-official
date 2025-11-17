@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supportia 訪問看護 運営サポート</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3B82F6',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:root {
+  --lp-primary: #6c8cff;
+  --lp-secondary: #f38ab5;
+  --lp-deep: #1b2240;
+  --lp-muted: #7c83a1;
+  --lp-sky: #f5f7ff;
+  --lp-card: rgba(255, 255, 255, 0.92);
+}
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  background: linear-gradient(160deg, #fbfcff 0%, #f2f5ff 40%, #fef8ff 100%);
+  color: var(--lp-deep);
+  letter-spacing: 0.01em;
+  line-height: 1.75;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(108, 140, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(255, 146, 178, 0.18), transparent 35%),
+    radial-gradient(circle at 50% 90%, rgba(154, 230, 180, 0.18), transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+h1, h2, h3, h4 {
+  font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+  letter-spacing: -0.02em;
+}
+.lp-shell {
+  position: relative;
+  z-index: 1;
+}
+.lp-section {
+  position: relative;
+  overflow: hidden;
+}
+.hero-section::after,
+.lp-glow::after {
+  content: '';
+  position: absolute;
+  inset: 10%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 60%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-copy,
+.lp-card,
+.lp-outline-card,
+.lp-quote {
+  background: var(--lp-card);
+  border-radius: 32px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 25px 80px rgba(15, 55, 114, 0.13);
+  backdrop-filter: blur(16px);
+}
+.lp-outline-card {
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+.lp-quote {
+  background: rgba(15, 19, 32, 0.9);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.lp-soft-bg {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 30px 90px rgba(114, 137, 218, 0.22);
+}
+.lp-soft-bg::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.05));
+  pointer-events: none;
+}
+.lp-nowrap {
+  white-space: nowrap;
+}
+.lp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--lp-primary);
+}
+.cta-primary,
+.cta-secondary {
+  border-radius: 999px;
+  padding: 0.95rem 2.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cta-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+}
+.cta-secondary {
+  background: linear-gradient(135deg, #10b981, #0d9488);
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(16, 185, 129, 0.25);
+}
+.cta-primary:hover,
+.cta-secondary:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 25px 45px rgba(15, 118, 244, 0.35);
+}
+.lp-check-item {
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.lp-check-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 10px 20px rgba(13, 148, 136, 0.35);
+}
+.lp-grid-card {
+  border-radius: 28px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
+}
+.lp-section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--lp-deep);
+  font-weight: 700;
+}
+.lp-section-title::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin: 1.5rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6c8cff, #f38ab5);
+}
+.lp-bullet-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--lp-deep);
+}
+.lp-highlight {
+  color: var(--lp-primary);
+  font-weight: 600;
+}
+.lp-accent-card {
+  border-radius: 28px;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, rgba(108, 140, 255, 0.9), rgba(243, 138, 181, 0.95));
+  color: #fff;
+  box-shadow: 0 25px 60px rgba(15, 76, 129, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.lp-ornament {
+  position: absolute;
+  inset: auto auto -120px 60%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+.lp-tagline {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: var(--lp-muted);
+  font-weight: 600;
+}
+.lp-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.4), transparent);
+  margin: 3rem auto;
+}
+.gradient-border {
+  position: relative;
+  border-radius: 30px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(108, 140, 255, 0.5), rgba(243, 138, 181, 0.5));
+}
+.gradient-border > div {
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.95);
+}
+.blurred-circle {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  z-index: 0;
+}
+.blurred-circle--blue {
+  background: #d6dbff;
+  top: -60px;
+  right: -40px;
+}
+.blurred-circle--green {
+  background: #ffd8ec;
+  bottom: -50px;
+  left: -30px;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@media (max-width: 1024px) {
+  .hero-copy {
+    margin-bottom: 2rem;
+  }
+  .lp-card,
+  .lp-grid-card,
+  .lp-outline-card {
+    border-radius: 24px;
+  }
+}
+@media (max-width: 640px) {
+  .lp-nowrap {
+    white-space: normal;
+  }
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body class="antialiased text-gray-800">
+<!-- Hero Section -->
+<section class="hero-section lp-section relative min-h-screen flex items-center justify-center overflow-hidden" style="background-image: url('../image/LP3HEROVIEW.png'); background-size: cover; background-position: center;">
+<div class="blurred-circle blurred-circle--blue" aria-hidden="true"></div>
+<div class="blurred-circle blurred-circle--green" aria-hidden="true"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-blue-50/90 via-blue-50/70 to-transparent"></div>
+<div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="flex-1 text-left space-y-6 px-4 lg:px-0">
+<div class="mb-2">
+<img src="../image/logo.png" alt="Supportiaロゴ" class="h-12 w-auto object-contain" />
+</div>
+<h2 class="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+訪問看護 運営サポート
+</h2>
+<p class="text-xl text-gray-700 leading-relaxed max-w-2xl">
+病む人も、働く人も、安心して生きられる社会をつくる。
+</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="https://lin.ee/4UoSWJa" target="_blank" rel="noopener noreferrer" class="cta-primary w-full sm:w-auto">
+無料で相談してみる
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Message Section -->
+<section class="lp-section py-20 lp-glow reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center space-y-8">
+<p class="lp-tagline text-primary">Vision Statement</p>
+<h2 class="text-4xl md:text-5xl font-bold leading-tight mt-4 mb-8">
+<span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text drop-shadow-sm">仕組みが整えば、<br>人が育ち、事業は伸びる。</span>
+</h2>
+<div class="space-y-6 text-2xl text-gray-800 leading-relaxed max-w-3xl mx-auto text-center">
+  <p>訪問看護の現場・管理・経営を整え、<br>安心して働けるチームと質の高い在宅ケアを増やす。</p>
+  <p>“管理者が育つ事業所”を全国に広げ、<br>辞めない組織・選ばれるステーションをつくる。</p>
+  <div class="space-y-2">
+    <p>現場・教育・経営の3点同時改善</p>
+    <p>再現性のある運営ノウハウと伴走支援</p>
+    <p>管理者育成による長期的な安定運営</p>
+    <p>チームが崩れない仕組みづくり</p>
+  </div>
+</div>
+</div>
+</section>
+<!-- Service Features Section -->
+<section class="lp-section py-20 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="text-center mb-16">
+<h2 class="lp-section-title">
+Supportiaの強み
+</h2>
+</div>
+<div class="space-y-6">
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.05s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">現場・管理者・経営の“3点同時改善”</p>
+</div>
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.15s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">訪問看護の制度・運営に特化した実践型</p>
+</div>
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.25s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">開業〜運営〜拡大まで一貫支援</p>
+</div>
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.35s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">管理者教育・採用・レセプトまで一気通貫</p>
+</div>
+<div class="lp-check-item flex items-center gap-4 reveal" style="--reveal-delay: 0.45s;">
+<div class="lp-check-icon">
+<i class="ri-check-line"></i>
+</div>
+<p class="lp-bullet-title">6事業所の黒字化・立て直しの実績</p>
+</div>
+</div>
+<div class="mt-12"></div>
+</div>
+</section>
+<!-- Reality Section -->
+<section class="lp-section py-20 reveal">
+  <div class="max-w-4xl mx-auto px-6 lg:px-8 lp-shell">
+    <div class="text-center mb-12">
+      <h2 class="lp-section-title">訪問看護の<br>“つまずきやすいポイント”</h2>
+      <p class="text-lg text-gray-600 mt-4">多くの事業所が次の3つで悩みます。</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="lp-card h-full p-6 text-left reveal" style="--reveal-delay: 0.05s;">
+        <p class="text-primary font-bold text-xl mb-3">① 業務が属人化する</p>
+        <p class="text-gray-700">記録・書類・引継ぎが人によってバラバラで、管理者の負担が増える。</p>
+      </div>
+      <div class="lp-card h-full p-6 text-left reveal" style="--reveal-delay: 0.15s;">
+        <p class="text-primary font-bold text-xl mb-3">② 管理者が育たない</p>
+        <p class="text-gray-700">リーダー経験がないまま管理者になり、判断・調整・育成ができない。</p>
+      </div>
+      <div class="lp-card h-full p-6 text-left reveal" style="--reveal-delay: 0.25s;">
+        <p class="text-primary font-bold text-xl mb-3">③ レセプト・加算が安定しない</p>
+        <p class="text-gray-700">返戻・漏れ・加算の抜けが起こり、利益が不安定になる。</p>
+      </div>
+    </div>
+    <div class="mt-12 space-y-4 text-center text-xl text-gray-800">
+      <p>これらはすべて運営の“仕組み”がないことが原因です。</p>
+      <p>Supportiaはその仕組みを1つずつ整え、<br>現場・教育・経営の3軸で支えるのが強みです。</p>
+    </div>
+  </div>
+</section>
+<!-- Support Details Section -->
+<!-- Support Plans Section -->
+<section class="lp-section py-20 bg-gradient-to-br from-indigo-100 via-sky-50 to-rose-50 text-gray-800 relative overflow-hidden reveal">
+<div class="max-w-6xl mx-auto px-6 lg:px-8 lp-shell">
+<div class="text-center mb-16">
+<h2 class="lp-section-title">サポートプラン</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <!-- ベーシックサポート -->
+  <div class="gradient-border h-full reveal" style="--reveal-delay: 0.05s;">
+    <div class="rounded-2xl p-8 text-gray-700 space-y-5 bg-white">
+      <div class="inline-flex items-center px-4 py-1 rounded-full bg-indigo-50 text-indigo-600 text-sm font-semibold">① ベーシックサポート</div>
+      <div>
+        <p class="text-2xl font-bold text-gray-900 mb-1">月額：10万円／6か月〜（税別）</p>
+        <p class="text-lg text-gray-600">まず“崩れない運営”をつくる基本ライン</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-3">
+        <p class="text-lg font-bold text-gray-900">支援内容</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>・ 運営相談（月2回オンライン）</li>
+          <li>・ 業務フロー・記録・書類の整理</li>
+          <li>・ レセプトの基本フォロー（算定・返戻）</li>
+          <li>・ 管理者の役割整理（会議・共有体制）</li>
+          <li>・ 採用支援（求人票〜面接同席）</li>
+        </ul>
+      </div>
+      <div class="bg-white border border-slate-100 rounded-2xl p-6 space-y-3">
+        <p class="text-lg font-bold text-gray-900">対象</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>・ 管理者が不安定</li>
+          <li>・ 業務の属人化が強い</li>
+          <li>・ まず運営を整えたい法人</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ②アドバンスサポート -->
+  <div class="gradient-border h-full reveal" style="--reveal-delay: 0.1s;">
+    <div class="rounded-2xl p-8 text-gray-700 space-y-5 bg-white">
+      <div class="inline-flex items-center px-4 py-1 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold">② アドバンスサポート</div>
+      <div>
+        <p class="text-2xl font-bold text-gray-900 mb-1">月額：15万円／12か月〜（税別）</p>
+        <p class="text-lg text-gray-600">黒字化・教育・定着を同時につくる伴走型</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-3">
+        <p class="text-lg font-bold text-gray-900">支援内容（スタンダード＋）</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>・ 管理者コーチング（90分×6回）</li>
+          <li>・ レセプト体制構築（加算整理・統一）</li>
+          <li>・ オンコール運用設計（緊急対応マニュアル）</li>
+          <li>・ 離職防止・関係性改善（面談同行）</li>
+          <li>・ 経営方針ミーティング（月1回）</li>
+          <li>・ 現地訪問：年6回まで</li>
+        </ul>
+      </div>
+      <div class="bg-white border border-slate-100 rounded-2xl p-6 space-y-3">
+        <p class="text-lg font-bold text-gray-900">対象</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>・ 管理者育成＋安定運営が必要</li>
+          <li>・ 離職やチームのズレがある</li>
+          <li>・ 黒字化を最速で実現したい法人</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ストラテジーサポート -->
+  <div class="gradient-border h-full reveal" style="--reveal-delay: 0.15s;">
+    <div class="rounded-2xl p-8 text-gray-700 space-y-5 bg-white">
+      <div class="inline-flex items-center px-4 py-1 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold">③ ストラテジーサポート</div>
+      <div>
+        <p class="text-2xl font-bold text-gray-900 mb-1">月額：20万円／12か月〜（税別）</p>
+        <p class="text-lg text-gray-600">経営と現場の“両軸”を支える最上位プラン</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-3">
+        <p class="text-lg font-bold text-gray-900">支援内容（プレミアム＋）</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>・ 経営者・管理者合同コンサル（月2回）</li>
+          <li>・ KPI整理・成長戦略設計</li>
+          <li>・ 人事評価制度の導入支援</li>
+          <li>・ 複数拠点の管理者育成</li>
+          <li>・ 現地訪問：年10回まで</li>
+          <li>・ サテライト計画の伴走支援</li>
+        </ul>
+      </div>
+      <div class="bg-white border border-slate-100 rounded-2xl p-6 space-y-3">
+        <p class="text-lg font-bold text-gray-900">対象</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>・ 複数拠点を運営している法人</li>
+          <li>・ 管理者2名以上を育てたい法人</li>
+          <li>・ 経営戦略と現場改善を同時に叶えたい法人</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="lp-section py-20 bg-gradient-to-br from-blue-50 to-cyan-50 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center lp-shell">
+<div class="lp-outline-card p-12 space-y-6 reveal" style="--reveal-delay: 0.1s;">
+<h2 class="lp-section-title text-gray-900">【無料個別相談受付中！】</h2>
+<p class="text-xl text-gray-700">
+まずは、あなたの想いとプランを聞かせてください。<br>
+あなたの未来に寄り添い、共に形にしていきます。
+</p>
+<div class="flex justify-center">
+<a href="../index-static.html#contact" class="cta-secondary w-full sm:w-auto">
+<i class="ri-mail-line mr-2"></i>
+お問い合わせ
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Message Section -->
+<section class="lp-section py-20 bg-gradient-to-br from-white via-indigo-50/60 to-rose-50 reveal">
+<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center lp-shell">
+<div class="space-y-8 reveal" style="--reveal-delay: 0.1s;">
+<h2 class="text-3xl font-bold text-gray-900">最後に。</h2>
+<div class="space-y-6 text-xl leading-relaxed text-gray-700">
+<p>「運営の土台さえ整えば、訪問看護は必ず伸びます。」</p>
+<p>Supportiaは、現場と管理者と経営の3軸を整え、</p>
+<div class="text-2xl font-bold text-gray-900 pt-4 space-y-2">
+  <p>“人が辞めない事業所”</p>
+  <p>“黒字化する事業所”</p>
+</div>
+<p>を一緒につくっていきます。</p>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+  });
+</script>
+</body>
+</html>
