@@ -209,18 +209,26 @@
             color: #1a2a4a;
             -webkit-text-fill-color: transparent;
         }
+        .page-container {
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .page-container.is-active {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="smooth-scroll">
     <!-- ホームページ -->
-    <div id="home-page" class="min-h-screen bg-white">
+    <div id="home-page" class="page-container is-active min-h-screen bg-white">
         <!-- ヘッダー -->
         <header class="bg-white shadow-sm relative z-50">
             <div class="w-full px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-4">
                     <div class="flex items-center space-x-10">
-                        <h1 class="text-3xl font-bold text-blue-600 pacifico-font cursor-pointer" onclick="showPage('home')">
-                            <span class="inline-flex items-center text-3xl text-blue-600 drop-shadow-sm tracking-wide">Supportia</span>
+                        <h1 class="flex items-center cursor-pointer" onclick="showPage('home')">
+                            <img src="image/logo.png" alt="Supportiaロゴ" class="h-10 w-10 object-contain" />
                         </h1>
                         <nav class="hidden lg:flex space-x-8">
                         <a href="#services" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
@@ -235,9 +243,17 @@
                             <i class="ri-stethoscope-line text-lg mr-2"></i>
                             開業支援
                         </a>
+                        <a href="link/LP3 訪問看護運営サポート.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
+                            <i class="ri-pulse-line text-lg mr-2"></i>
+                            運営支援
+                        </a>
                         <a href="link/lp2-gajumaru-nurse.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
                             <i class="ri-heart-pulse-line text-lg mr-2"></i>
-                            がじゅまるりんくナース
+                            コミュニティ運営
+                        </a>
+                        <a onclick="showPage('representative')" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
+                            <i class="ri-user-star-line text-lg mr-2"></i>
+                            代表紹介
                         </a>
                         </nav>
                     </div>
@@ -328,48 +344,82 @@
                     <p class="inline-flex items-center justify-center px-5 py-2 bg-sky-100/80 border border-sky-200 rounded-full text-sm font-semibold text-sky-700">「Support（支える）」＋「ia（人々・場所）」</p>
                     <p class="text-lg text-slate-700 leading-relaxed">看護師一人ひとりが支え合い、育ち合う場をつくる。<br class="hidden md:block">そんな想いを込めて、Supportiaは生まれました。</p>
                 </div>
-                <div class="max-w-3xl mx-auto mt-10 text-center">
-                    <p class="text-xl font-medium text-slate-700 leading-tight">支え、育て、看護の世界に変化を…</p>
-                    <p class="text-slate-600 leading-tight mt-1">その一歩を、あなたと一緒に踏み出したいと思っています。</p>
+                <div class="max-w-3xl mx-auto mt-10 text-center space-y-1">
+                    <p class="text-lg text-slate-700 leading-relaxed">支え、育て、看護の世界に変化を…</p>
+                    <p class="text-lg text-slate-700 leading-relaxed">その一歩を、あなたと一緒に踏み出したいと思っています。</p>
+                </div>
+                <div class="max-w-3xl mx-auto mt-10 text-center space-y-3">
+                    <h3 class="text-3xl md:text-5xl font-bold text-slate-800 leading-tight">Tagline</h3>
+                    <p class="text-lg text-slate-700 leading-relaxed font-semibold text-emerald-700">病む人も、働く人も、安心して生きられる社会をつくる。</p>
+                    <p class="text-lg text-slate-700 leading-relaxed">看護師の未来に、やさしさと強さを。</p>
+                    <p class="text-lg text-slate-700 leading-relaxed">支え、育て、看護の世界を変える。</p>
                 </div>
             </div>
         </section>
 
-        <!-- Supportiaでできること -->
+        <!-- 事業内容 -->
         <section id="services" class="relative py-20 bg-gradient-to-b from-sky-50 via-cyan-50 to-emerald-50/40 overflow-hidden border-y border-cyan-100">
             <div class="absolute -top-24 -right-16 w-64 h-64 bg-emerald-200/50 rounded-full blur-3xl" aria-hidden="true"></div>
             <div class="absolute -bottom-24 -left-20 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl" aria-hidden="true"></div>
             <div class="relative w-full px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-6">
                     <h2 class="text-3xl font-bold text-gray-800">
-                        <span class="text-gray-800">Supportiaでできること</span>
-                        <span class="text-lg text-gray-500 ml-4">What Supportia Offers</span>
+                        <span class="text-gray-800">事業内容</span>
+                        <span class="text-lg text-gray-500 ml-4">What We Do</span>
                     </h2>
                 </div>
 
-                <div class="grid lg:grid-cols-3 gap-8">
+                <div class="grid lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- がんばるあなたへ・メンター支援 -->
+                    <div class="bg-gradient-to-br from-cyan-50 to-emerald-50 rounded-lg overflow-hidden shadow-lg hover-shadow cursor-pointer group">
+                        <div class="relative h-64">
+                            <img
+                                src="image/Career support.jpg"
+                                alt="看護師キャリアサポート"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div class="absolute inset-0 bg-cyan-500 bg-opacity-20"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 aspect-square bg-cyan-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="ri-graduation-cap-line text-2xl text-cyan-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">看護師キャリアサポート</h3>
+                                    <p class="text-sm text-gray-600">Career support</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-4 leading-relaxed">
+                                現場で“迷わない看護師”を増やすための伴走支援<br />
+                                キャリア相談（方向性整理・道筋設計）<br />
+                                管理者スキル育成（判断力・役割の強化）
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- 個別相談・人材紹介 -->
                     <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg overflow-hidden shadow-lg hover-shadow cursor-pointer group">
                         <div class="relative h-64">
                             <img
-                                src="https://readdy.ai/api/search-image?query=Professional%20Japanese%20female%20nurse%20providing%20individual%20consultation%20and%20business%20support%20for%20home%20nursing%20care%20startup%2C%20Japanese%20healthcare%20professional%20woman%20in%20modern%20medical%20office%20setting%2C%20clean%20and%20professional%20environment%2C%20Asian%20female%20medical%20professional%20offering%20guidance%20and%20support&width=400&height=300&seq=consultation-service-female-jp&orientation=landscape"
-                                alt="個別相談"
+                                src="image/Opening support.jpg"
+                                alt="訪問看護 開業サポート"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                             <div class="absolute inset-0 bg-blue-500 bg-opacity-20"></div>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <div class="w-12 aspect-square bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="ri-user-heart-line text-2xl text-blue-600"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">訪問看護開業・運営支援</h3>
-                                    <p class="text-sm text-gray-600">Operational support</p>
+                                    <h3 class="text-lg font-bold text-gray-800">訪問看護 開業サポート</h3>
+                                    <p class="text-sm text-gray-600">Opening support</p>
                                 </div>
                             </div>
                             <p class="text-gray-700 mb-4">
-                                立ち上げから黒字化・M&Aまで、伴走型でサポートします。
+                                開業サポート（申請・事業計画・集客）
                             </p>
                             <a
                                 href="link/lp1-opening-support.html"
@@ -383,34 +433,35 @@
                         </div>
                     </div>
 
-                    <!-- がんばるあなたへ・メンター支援 -->
-                    <div class="bg-gradient-to-br from-cyan-50 to-emerald-50 rounded-lg overflow-hidden shadow-lg hover-shadow cursor-pointer group">
+                    <!-- 訪問看護 運営サポート -->
+                    <div class="bg-gradient-to-br from-indigo-50 via-blue-50 to-slate-50 rounded-lg overflow-hidden shadow-lg hover-shadow cursor-pointer group">
                         <div class="relative h-64">
                             <img
-                                src="https://readdy.ai/api/search-image?query=Experienced%20senior%20Japanese%20female%20nurse%20mentoring%20younger%20Japanese%20nurse%2C%20supportive%20healthcare%20mentorship%20scene%20in%20Japan%2C%20medical%20facility%20background%2C%20professional%20guidance%20and%20support%20between%20Asian%20healthcare%20professionals%2C%20encouraging%20atmosphere%2C%20medical%20education%20setting%20with%20Japanese%20nurses&width=400&height=300&seq=mentorship-support-jp&orientation=landscape"
-                                alt="メンター支援"
+                                src="image/Operational support.jpg"
+                                alt="訪問看護 運営サポート"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
-                            <div class="absolute inset-0 bg-cyan-500 bg-opacity-20"></div>
+                            <div class="absolute inset-0 bg-indigo-500 bg-opacity-20"></div>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mr-4">
-                                    <i class="ri-graduation-cap-line text-2xl text-cyan-600"></i>
+                                <div class="w-12 aspect-square bg-indigo-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="ri-settings-3-line text-2xl text-indigo-600"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">キャリア相談・人材紹介</h3>
-                                    <p class="text-sm text-gray-600">Career counseling & Recruitment</p>
+                                    <h3 class="text-lg font-bold text-gray-800">訪問看護 運営サポート</h3>
+                                    <p class="text-sm text-gray-600">Operational support</p>
                                 </div>
                             </div>
-                            <p class="text-gray-700 mb-4">
-                                「今のままでいいのかな？」そんな迷いに寄り添い、自分らしい働き方を見つけるお手伝いをします.
+                            <p class="text-gray-700 mb-4 leading-relaxed">
+                                運営支援（マネジメント・営業・人材育成）<br />
+                                管理者教育（評価制度導入・理念浸透）
                             </p>
                             <a
-                                href="link/lp1-opening-support.html"
+                                href="link/LP3%20訪問看護運営サポート.html"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="flex items-center text-cyan-600 font-semibold"
+                                class="flex items-center text-indigo-600 font-semibold"
                             >
                                 <span>詳細を見る</span>
                                 <i class="ri-arrow-right-line ml-2"></i>
@@ -422,24 +473,27 @@
                     <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg overflow-hidden shadow-lg hover-shadow cursor-pointer group">
                         <div class="relative h-64">
                             <img
-                                src="https://readdy.ai/api/search-image?query=Japanese%20female%20nurse%20career%20development%20and%20growth%2C%20professional%20advancement%20in%20healthcare%20Japan%2C%20modern%20medical%20training%20facility%2C%20career%20planning%20session%20with%20Japanese%20healthcare%20professionals%2C%20bright%20and%20inspiring%20medical%20environment%2C%20professional%20development%20atmosphere%20with%20Asian%20nurses&width=400&height=300&seq=career-support-jp&orientation=landscape"
-                                alt="キャリア支援"
+                                src="image/Community management.jpg"
+                                alt="コミュニティ運営・チームサポーター"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                             <div class="absolute inset-0 bg-emerald-500 bg-opacity-20"></div>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+                                <div class="w-12 aspect-square bg-emerald-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="ri-calendar-check-line text-2xl text-emerald-600"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">がじゅまるりんくナース運営</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">コミュニティ運営・チームサポーター</h3>
                                     <p class="text-sm text-gray-600">Community management</p>
                                 </div>
                             </div>
-                            <p class="text-gray-700 mb-4">
-                                看護師同士でつながり、学び、支え合える場所。月1オンラインcafe会、リアルランチ会など開催中！
+                            <p class="text-gray-700 mb-4 leading-relaxed">
+                                <span class="font-semibold text-emerald-700">がじゅまるリンクナース運営</span><br />
+                                <span class="text-sm text-gray-600">学び合い・相談・キャリア形成のプラットフォーム</span><br />
+                                <span class="font-semibold text-emerald-700">ナースウィッシュ訪問看護チームサポーター</span><br />
+                                <span class="text-sm text-gray-600">訪問看護チームの関係性づくりと実務フォロー</span>
                             </p>
                             <a
                                 href="link/lp2-gajumaru-nurse.html"
@@ -466,95 +520,101 @@
                                 <span class="block text-lg text-slate-600 mt-2">Mission / Vision / Value</span>
                             </h2>
                         </div>
-                        <!-- Mobile stacked layout -->
-                        <div class="space-y-4 md:hidden">
+                        <div class="grid gap-6 md:grid-cols-3">
                             <div class="rounded-3xl border border-blue-100 bg-white/90 backdrop-blur px-6 py-6 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100/60 hover:border-blue-200">
                                 <div class="flex items-center gap-3">
-                                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-blue-600 bg-blue-50 border border-blue-100 rounded-full">Mission</span>
-                                    <span class="text-xs text-gray-500">ミッション</span>
+                                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
+                                        <i class="ri-compass-line text-2xl text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-blue-600 bg-blue-50 border border-blue-100 rounded-full">Mission</span>
+                                        <p class="text-xs text-gray-500 mt-1">ミッション</p>
+                                    </div>
                                 </div>
-                                <p class="mt-4 text-sm text-gray-700 leading-relaxed">看護師に寄り添い、力を育て、世界を優しくする。</p>
-                                <p class="mt-3 text-xs font-semibold tracking-[0.35em] uppercase text-blue-500">Compassion &amp; Empower</p>
+                                <div class="mt-4">
+                                    <div class="rounded-2xl p-[2px] bg-gradient-to-r from-blue-100 via-cyan-100 to-emerald-100">
+                                        <div class="rounded-2xl bg-white px-5 py-4 text-center shadow-sm">
+                                            <p class="text-base font-semibold tracking-wide text-slate-900 leading-relaxed">
+                                                看護師に寄り添い、<br />力を育て、世界を優しくする。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mt-4 text-sm text-gray-700 leading-relaxed">
+                                    <span class="inline-block">Supportia は、しんどさを抱える看護師に寄り添い、</span><br />
+                                    <span class="inline-block">必要な力を身につけてもらいながら、</span><br />
+                                    <span class="inline-block">看護師を取り巻く世界そのものを優しく、</span><br />
+                                    <span class="inline-block">働きやすくしていくことを目指します。</span>
+                                </p>
                             </div>
+
                             <div class="rounded-3xl border border-cyan-100 bg-white/90 backdrop-blur px-6 py-6 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-100/60 hover:border-cyan-200">
                                 <div class="flex items-center gap-3">
-                                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-600 bg-cyan-50 border border-cyan-100 rounded-full">Vision</span>
-                                    <span class="text-xs text-gray-500">ビジョン</span>
+                                    <div class="w-12 h-12 rounded-full bg-cyan-50 flex items-center justify-center">
+                                        <i class="ri-lightbulb-flash-line text-2xl text-cyan-600"></i>
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-cyan-600 bg-cyan-50 border border-cyan-100 rounded-full">Vision</span>
+                                        <p class="text-xs text-gray-500 mt-1">ビジョン</p>
+                                    </div>
                                 </div>
-                                <p class="mt-4 text-sm text-gray-700 leading-relaxed">看護師が笑顔で働ける環境をつくり、 その先にある患者さんの幸せにつなげます。</p>
-                                <p class="mt-3 text-xs font-semibold tracking-[0.35em] uppercase text-cyan-500">Joyful Workplaces</p>
-                            </div>
-                            <div class="rounded-3xl border border-emerald-100 bg-white/90 backdrop-blur px-6 py-6 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-100/60 hover:border-emerald-200">
-                                <div class="flex items-center gap-3">
-                                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-emerald-600 bg-emerald-50 border border-emerald-100 rounded-full">Value</span>
-                                    <span class="text-xs text-gray-500">バリュー</span>
+                                <div class="mt-4">
+                                    <div class="rounded-2xl p-[2px] bg-gradient-to-r from-rose-100 via-amber-100 to-emerald-100">
+                                        <div class="rounded-2xl bg-white px-5 py-4 text-center shadow-sm">
+                                            <p class="text-base font-semibold tracking-wide text-slate-900 leading-relaxed">
+                                                看護師が<br />笑顔で働ける環境をつくり、<br />病む人の幸せにつなげる。
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <ul class="mt-4 space-y-2 text-sm text-gray-700 leading-relaxed">
-                                    <li><span class="font-semibold text-emerald-600">Compassion：</span>思いやりのある支援</li>
-                                    <li><span class="font-semibold text-emerald-600">Empowerment：</span>自信と力を引き出す支援</li>
-                                    <li><span class="font-semibold text-emerald-600">Sustainability：</span>長く続く安心の仕組みづくり</li>
-                                    <li><span class="font-semibold text-emerald-600">Collaboration：</span>他職種とのつながりを大切に</li>
-                                    <li><span class="font-semibold text-emerald-600">Integrity：</span>誠実で信頼できる関係性</li>
+                                <ul class="mt-3 space-y-2 text-sm text-gray-700 leading-relaxed">
+                                    <li>
+                                        <span class="font-semibold text-cyan-700">〇 看護師自身が成長できるサポート</span><br />
+                                        <span class="text-gray-600">→ 誇りとやりがいを持てる</span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold text-cyan-700">〇 訪問看護の開業・運営サポート</span><br />
+                                        <span class="text-gray-600">→ 負担を軽減し、持続可能な仕組みづくり</span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold text-cyan-700">〇 接遇・社会人基礎力の向上</span><br />
+                                        <span class="text-gray-600">→ 看護師の地位や働きやすさUP</span>
+                                    </li>
                                 </ul>
                             </div>
-                        </div>
 
-                        <!-- Desktop pyramid layout -->
-                        <div class="hidden md:flex md:items-center md:justify-between md:gap-8">
-                            <div class="flex flex-col items-center w-[55%]">
-                                <div class="relative w-44 lg:w-56 h-32">
-                                    <div class="h-full w-full bg-gradient-to-tr from-emerald-500 via-sky-500 to-cyan-500 shadow-lg" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center drop-shadow">
-                                        <span class="text-xs font-semibold tracking-[0.35em] uppercase">Mission</span>
-                                        <span class="mt-1 text-xs">ミッション</span>
+                            <div class="rounded-3xl border border-emerald-100 bg-white/90 backdrop-blur px-6 py-6 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-100/60 hover:border-emerald-200">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center">
+                                        <i class="ri-heart-3-line text-2xl text-emerald-600"></i>
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-emerald-600 bg-emerald-50 border border-emerald-100 rounded-full">Value</span>
+                                        <p class="text-xs text-gray-500 mt-1">バリュー</p>
                                     </div>
                                 </div>
-                                <div class="relative w-64 lg:w-80 h-40 -mt-10">
-                                    <div class="h-full w-full bg-gradient-to-tr from-emerald-400 via-sky-400 to-cyan-400 shadow-lg" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center drop-shadow">
-                                        <span class="text-xs font-semibold tracking-[0.35em] uppercase">Vision</span>
-                                        <span class="mt-1 text-xs">ビジョン</span>
-                                    </div>
-                                </div>
-                                <div class="relative w-80 lg:w-[22rem] h-48 -mt-14">
-                                    <div class="h-full w-full bg-gradient-to-tr from-emerald-300 via-teal-300 to-sky-300 shadow-lg" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center drop-shadow">
-                                        <span class="text-xs font-semibold tracking-[0.35em] uppercase">Value</span>
-                                        <span class="mt-1 text-xs">バリュー</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="w-[45%] space-y-8">
-                                <div class="relative">
-                                    <div class="hidden xl:block absolute top-1/2 -left-10 w-12 h-px -translate-y-1/2 bg-blue-200"></div>
-                                    <div class="rounded-3xl border border-blue-100 bg-white/90 backdrop-blur px-8 py-8 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100/60 hover:border-blue-200">
-                                        <h3 class="text-xl font-semibold text-slate-800">Mission</h3>
-                                        <p class="mt-3 text-sm text-gray-700 leading-relaxed">看護師に寄り添い、力を育て、世界を優しくする。</p>
-                                        <p class="mt-3 text-xs font-semibold tracking-[0.35em] uppercase text-blue-500">Compassion &amp; Empower</p>
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <div class="hidden xl:block absolute top-1/2 -left-10 w-12 h-px -translate-y-1/2 bg-cyan-200"></div>
-                                    <div class="rounded-3xl border border-cyan-100 bg-white/90 backdrop-blur px-8 py-8 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-100/60 hover:border-cyan-200">
-                                        <h3 class="text-xl font-semibold text-slate-800">Vision</h3>
-                                        <p class="mt-3 text-sm text-gray-700 leading-relaxed">看護師が笑顔で働ける環境をつくり、 その先にある患者さんの幸せにつなげます。</p>
-                                        <p class="mt-3 text-xs font-semibold tracking-[0.35em] uppercase text-cyan-500">Joyful Workplaces</p>
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <div class="hidden xl:block absolute top-1/2 -left-10 w-12 h-px -translate-y-1/2 bg-emerald-200"></div>
-                                    <div class="rounded-3xl border border-emerald-100 bg-white/90 backdrop-blur px-8 py-8 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-100/60 hover:border-emerald-200">
-                                        <h3 class="text-xl font-semibold text-slate-800">Value</h3>
-                                        <ul class="mt-4 space-y-2 text-sm text-gray-700 leading-relaxed">
-                                            <li><span class="font-semibold text-emerald-600">Compassion：</span>思いやりのある支援</li>
-                                            <li><span class="font-semibold text-emerald-600">Empowerment：</span>自信と力を引き出す支援</li>
-                                            <li><span class="font-semibold text-emerald-600">Sustainability：</span>長く続く安心の仕組みづくり</li>
-                                            <li><span class="font-semibold text-emerald-600">Collaboration：</span>他職種とのつながりを大切に</li>
-                                            <li><span class="font-semibold text-emerald-600">Integrity：</span>誠実で信頼できる関係性</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <ul class="mt-4 space-y-3 text-sm text-gray-700 leading-relaxed">
+                                    <li>
+                                        <span class="font-semibold text-emerald-600">Compassion（思いやり）</span><br />
+                                        <span class="text-gray-600">– 心からの支援を提供する</span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold text-emerald-600">Empowerment（成長の支援）</span><br />
+                                        <span class="text-gray-600">– キャリアや人生に自信を持てるようにする</span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold text-emerald-600">Sustainability（持続可能な環境）</span><br />
+                                        <span class="text-gray-600">– 長期的な支援を提供する</span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold text-emerald-600">Collaboration（つながり）</span><br />
+                                        <span class="text-gray-600">– 医療・介護業界と連携し未来を創る</span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold text-emerald-600">Integrity（誠実さ）</span><br />
+                                        <span class="text-gray-600">– 信頼される支援を提供する</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
@@ -602,12 +662,20 @@
                                             開業支援について
                                         </a>
                                         <a
+                                            href="link/LP3 訪問看護運営サポート.html"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 px-6 py-3 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
+                                        >
+                                            運営支援について
+                                        </a>
+                                        <a
                                             href="link/lp2-gajumaru-nurse.html"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             class="inline-flex items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 px-6 py-3 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
                                         >
-                                            がじゅまるりんくナースについて
+                                            コミュニティ運営について
                                         </a>
                                     </div>
                                 </div>
@@ -621,9 +689,9 @@
         <footer class="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
                 <div class="text-center">
-                    <a href="/" class="inline-flex items-center justify-center mb-8 pacifico-font">
-                        <span class="text-3xl text-blue-200">Supportia</span>
-                    </a>
+                    <div class="inline-flex items-center justify-center mb-8">
+                        <img src="image/logo.png" alt="Supportiaロゴ" class="h-12 w-12 object-contain" />
+                    </div>
                     <div class="flex justify-center gap-6 mb-8 text-white">
                         <a href="https://www.instagram.com/kaneda_nurse_supportia/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full transition-colors cursor-pointer text-white hover:bg-rose-500/20 hover:text-rose-200" aria-label="Instagram">
                             <i class="ri-instagram-line text-xl"></i>
@@ -635,39 +703,110 @@
                             <i class="ri-facebook-fill text-xl"></i>
                         </a>
                     </div>
+                    <div class="flex flex-col sm:flex-row justify-center gap-6 mb-6 text-sm font-semibold">
+                        <a href="link/lp1-opening-support.html" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors">開業支援</a>
+                        <a href="link/LP3 訪問看護運営サポート.html" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors">運営支援</a>
+                        <a href="link/lp2-gajumaru-nurse.html" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors">コミュニティ運営</a>
+                    </div>
                     <p class="text-blue-200 text-sm">&copy; 2025 Supportia. All rights reserved.</p>
                 </div>
             </div>
         </footer>
     </div>
 
+
+    <!-- 代表紹介ページ -->
+    <div id="representative-page" class="page-container min-h-screen bg-white" style="display:none;">
+        <header class="bg-white shadow-sm relative z-50">
+            <div class="w-full px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-10">
+                        <h1 class="flex items-center cursor-pointer" onclick="showPage('home')">
+                            <img src="image/logo.png" alt="Supportiaロゴ" class="h-10 w-10 object-contain" />
+                        </h1>
+                        <nav class="hidden lg:flex space-x-8">
+                            <a href="#services" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-briefcase-3-line text-lg mr-2"></i>事業内容</a>
+                            <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-team-line text-lg mr-2"></i>Supportiaについて</a>
+                            <a href="link/lp1-opening-support.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-stethoscope-line text-lg mr-2"></i>開業支援</a>
+                            <a href="link/LP3 訪問看護運営サポート.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-pulse-line text-lg mr-2"></i>運営支援</a>
+                            <a href="link/lp2-gajumaru-nurse.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-heart-pulse-line text-lg mr-2"></i>コミュニティ運営</a>
+                            <a onclick="showPage('representative')" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-user-star-line text-lg mr-2"></i>代表紹介</a>
+                        </nav>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <!-- reuse contact icons?-->
+                        <div class="hidden lg:flex items-center space-x-3 pr-4 mr-4 border-r border-slate-200">
+                            <a href="https://www.instagram.com/kaneda_nurse_supportia/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-500 hover:border-rose-400 hover:text-rose-500 transition-colors cursor-pointer" aria-label="Instagram"><i class="ri-instagram-line text-base"></i></a>
+                            <a href="https://lin.ee/4UoSWJa" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-500 hover:border-emerald-400 hover:text-emerald-500 transition-colors cursor-pointer" aria-label="LINE"><i class="ri-line-fill text-base"></i></a>
+                            <a href="https://www.facebook.com/nao18zero/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-500 hover:border-blue-400 hover:text-blue-500 transition-colors cursor-pointer" aria-label="Facebook"><i class="ri-facebook-fill text-base"></i></a>
+                        </div>
+                        <a onclick="showPage('contact')" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-phone-line text-lg mr-1"></i>お問い合わせ</a>
+                        <button class="lg:hidden p-2"><i class="ri-menu-line text-2xl text-gray-700"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="lp-section py-20 bg-gradient-to-br from-white via-indigo-50/70 to-rose-50">
+            <div class="max-w-4xl mx-auto px-6 lg:px-8">
+                <div class="lp-outline-card p-12 space-y-6 reveal bg-white/95 border border-indigo-100/70 shadow-xl">
+<h2 class="lp-section-title text-gray-900">代表紹介</h2>
+<p class="text-3xl font-bold text-gray-900">金田奈央 / Supportia代表</p>
+<p class="text-xl text-gray-700">訪問看護専門コンサルタント／管理者育成パートナー</p>
+<ul class="space-y-2 text-lg text-gray-700"><li>・急性期～在宅まで幅広い臨床経験</li><li>・訪問看護ステーション 14拠点の立ち上げ・再構築・黒字化を担当</li><li>・管理者として 開業8か月で黒字化を達成</li><li>・開業支援・運営改善・管理者教育・採用支援を年間で複数法人に提供</li></ul>
+<div class="pt-4 space-y-2"><p class="text-sm font-semibold text-primary uppercase tracking-[0.3em]">専門分野</p><p class="text-lg text-gray-700">・管理者育成</p><p class="text-lg text-gray-700">・業務フロー整備・運営改善・レセプト体制構築</p><p class="text-lg text-gray-700">・開業・サテライト展開伴走</p></div>
+<div class="pt-6 space-y-4"><p class="text-sm font-semibold text-primary uppercase tracking-[0.3em]">メッセージ</p><p class="text-xl text-gray-800 leading-relaxed">「管理者が育てば、事業所は必ず安定する。」<br>現場・教育・経営を一体で整え、<br>“辞めない組織・黒字化する運営”を一緒につくります。</p></div>
+                </div>
+            </div>
+        </section>
+        <!-- フッター -->
+        <footer class="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center mb-8">
+                        <img src="image/logo.png" alt="Supportiaロゴ" class="h-12 w-12 object-contain" />
+                    </div>
+                    <div class="flex justify-center gap-6 mb-8 text-white">
+                        <a href="https://www.instagram.com/kaneda_nurse_supportia/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full transition-colors cursor-pointer text-white hover:bg-rose-500/20 hover:text-rose-200" aria-label="Instagram">
+                            <i class="ri-instagram-line text-xl"></i>
+                        </a>
+                        <a href="https://lin.ee/4UoSWJa" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full transition-colors cursor-pointer text-white hover:bg-emerald-500/20 hover:text-emerald-200" aria-label="LINE">
+                            <i class="ri-line-fill text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/nao18zero/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full transition-colors cursor-pointer text-white hover:bg-blue-500/20 hover:text-blue-200" aria-label="Facebook">
+                            <i class="ri-facebook-fill text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-center gap-6 mb-6 text-sm font-semibold">
+                        <a href="link/lp1-opening-support.html" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors">開業支援</a>
+                        <a href="link/LP3 訪問看護運営サポート.html" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors">運営支援</a>
+                        <a href="link/lp2-gajumaru-nurse.html" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors">コミュニティ運営</a>
+                    </div>
+                    <p class="text-blue-200 text-sm">&copy; 2025 Supportia. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+    </div>
     <!-- お問い合わせページ -->
-    <div id="contact-page" class="min-h-screen bg-white" style="display: none;">
+    <div id="contact-page" class="page-container min-h-screen bg-white" style="display: none;">
         <!-- ヘッダー -->
         <header class="bg-white shadow-sm relative z-50">
             <div class="w-full px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-4">
                     <div class="flex items-center space-x-10">
-                        <h1 class="text-3xl font-bold text-blue-600 pacifico-font cursor-pointer" onclick="showPage('home')">
-                            <span class="inline-flex items-center text-3xl text-blue-600 drop-shadow-sm tracking-wide">Supportia</span>
+                        <h1 class="flex items-center cursor-pointer" onclick="showPage('home')">
+                            <img src="image/logo.png" alt="Supportiaロゴ" class="h-10 w-10 object-contain" />
                         </h1>
                         <nav class="hidden lg:flex space-x-8">
-                            <a href="/#services" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                                <i class="ri-briefcase-3-line text-lg mr-2"></i>
-                                事業内容
-                            </a>
-                            <a href="/#about" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                                <i class="ri-team-line text-lg mr-2"></i>
-                                Supportiaについて
-                            </a>
-                            <a href="/link/lp1-opening-support.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                                <i class="ri-stethoscope-line text-lg mr-2"></i>
-                                開業支援
-                            </a>
-                            <a href="/link/lp2-gajumaru-nurse.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                                <i class="ri-heart-pulse-line text-lg mr-2"></i>
-                                がじゅまるりんくナース
-                            </a>
+                            <a href="#services" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-briefcase-3-line text-lg mr-2"></i>事業内容</a>
+                            <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-team-line text-lg mr-2"></i>Supportiaについて</a>
+                            <a href="link/lp1-opening-support.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-stethoscope-line text-lg mr-2"></i>開業支援</a>
+                            <a href="link/LP3 訪問看護運営サポート.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-pulse-line text-lg mr-2"></i>運営支援</a>
+                            <a href="link/lp2-gajumaru-nurse.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-heart-pulse-line text-lg mr-2"></i>コミュニティ運営</a>
+                            <a onclick="showPage('representative')" class="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"><i class="ri-user-star-line text-lg mr-2"></i>代表紹介</a>
                         </nav>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -777,9 +916,9 @@
         <footer class="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
                 <div class="text-center">
-                    <a href="/" class="inline-flex items-center justify-center mb-8 pacifico-font">
-                        <span class="text-3xl text-blue-200">Supportia</span>
-                    </a>
+                    <div class="inline-flex items-center justify-center mb-8">
+                        <img src="image/logo.png" alt="Supportiaロゴ" class="h-12 w-12 object-contain" />
+                    </div>
                     <div class="flex justify-center gap-6 mb-8 text-white">
                         <a href="https://www.instagram.com/kaneda_nurse_supportia/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full transition-colors cursor-pointer text-white hover:bg-rose-500/20 hover:text-rose-200" aria-label="Instagram">
                             <i class="ri-instagram-line text-xl"></i>
@@ -826,19 +965,36 @@
 
         // ページ切り替え機能
         function showPage(pageName) {
-            // 全てのページを非表示
-            document.getElementById('home-page').style.display = 'none';
-            document.getElementById('contact-page').style.display = 'none';
-            
-            // 指定されたページを表示
-            if (pageName === 'home') {
-                document.getElementById('home-page').style.display = 'block';
-            } else if (pageName === 'contact') {
-                document.getElementById('contact-page').style.display = 'block';
+            const pageMap = {
+                home: 'home-page',
+                contact: 'contact-page',
+                representative: 'representative-page'
+            };
+            const targetKey = pageMap[pageName] ? pageName : 'home';
+            const targetId = pageMap[targetKey];
+
+            Object.values(pageMap).forEach((id) => {
+                const page = document.getElementById(id);
+                if (!page || id === targetId) return;
+                if (page.classList.contains('is-active')) {
+                    page.classList.remove('is-active');
+                    setTimeout(() => {
+                        if (!page.classList.contains('is-active')) {
+                            page.style.display = 'none';
+                        }
+                    }, 300);
+                } else {
+                    page.style.display = 'none';
+                }
+            });
+
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.style.display = 'block';
+                requestAnimationFrame(() => target.classList.add('is-active'));
             }
-            
-            // ページトップにスクロール
-            window.scrollTo(0, 0);
+
+            window.scrollTo({ top: 0, behavior: 'auto' });
         }
 
         // トップにスクロール
@@ -866,8 +1022,15 @@
         // 初期化
         document.addEventListener('DOMContentLoaded', function() {
             initHeroSlideshow();
-            const hash = window.location.hash.replace('#', '').toLowerCase();
-            const initialPage = (hash === 'contact' || hash === 'contact-page') ? 'contact' : 'home';
+            const rawHash = window.location.hash.replace('#', '').toLowerCase();
+            const validPageHashes = ['contact', 'contact-page', 'representative'];
+            const pageHash = validPageHashes.includes(rawHash) ? rawHash : '';
+            if (rawHash && !pageHash && window.history && window.history.replaceState) {
+                window.history.replaceState(null, '', window.location.pathname);
+            }
+            const initialPage = (pageHash === 'contact' || pageHash === 'contact-page')
+                ? 'contact'
+                : (pageHash === 'representative' ? 'representative' : 'home');
             showPage(initialPage);
         });
     </script>
