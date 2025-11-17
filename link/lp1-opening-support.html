@@ -456,6 +456,7 @@ h1, h2, h3, h4 {
 <h2 class="lp-section-title">
 【初期費用50万円】から始められる<br>３つのプラン
 </h2>
+</div>
 <div class="mt-6 max-w-4xl mx-auto text-left space-y-4">
   <div class="lp-card space-y-3 p-6 border border-indigo-100">
     <div class="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-indigo-50 via-blue-50 to-indigo-50 border border-indigo-100 rounded-full shadow-sm">
@@ -505,7 +506,8 @@ h1, h2, h3, h4 {
       </p>
     </div>
   </div>
-  
+</div>
+</div>
 
 </section>
 <!-- Detailed Support Plans -->
@@ -756,6 +758,12 @@ h1, h2, h3, h4 {
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal');
+
+    if (!('IntersectionObserver' in window)) {
+      revealElements.forEach((el) => el.classList.add('in-view'));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

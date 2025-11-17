@@ -12,9 +12,37 @@ const heroImages = [
   `${basePath}image/TOPHERO3.png`,
 ];
 const HERO_ROTATION_INTERVAL = 4000; // 4 seconds per hero image
+const navItems = [
+  { href: '#services', label: '事業内容', icon: 'ri-briefcase-3-line' },
+  { href: '#about', label: 'Supportiaについて', icon: 'ri-team-line' },
+  { href: '#news', label: '新着情報', icon: 'ri-notification-3-line' },
+  { href: '#blog', label: 'ブログ', icon: 'ri-book-open-line' },
+];
+
+const socialLinks = [
+  {
+    href: 'https://www.instagram.com/kaneda_nurse_supportia/',
+    icon: 'ri-instagram-line',
+    aria: 'Instagram',
+    hoverColor: 'hover:text-rose-500 hover:border-rose-400',
+  },
+  {
+    href: 'https://lin.ee/4UoSWJa',
+    icon: 'ri-line-fill',
+    aria: 'LINE',
+    hoverColor: 'hover:text-emerald-500 hover:border-emerald-400',
+  },
+  {
+    href: 'https://www.facebook.com/nao18zero/',
+    icon: 'ri-facebook-fill',
+    aria: 'Facebook',
+    hoverColor: 'hover:text-blue-500 hover:border-blue-400',
+  },
+];
 
 const HomePage: React.FC = () => {
   const [heroImageIndex, setHeroImageIndex] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (heroImages.length < 2) {
@@ -39,65 +67,105 @@ const HomePage: React.FC = () => {
                 <img src={`${basePath}image/logo.png`} alt="Supportiaロゴ" className="h-10 w-10 object-contain" />
               </h1>
               <nav className="hidden lg:flex space-x-8">
-              <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                <i className="ri-briefcase-3-line text-lg mr-2"></i>
-                事業内容
-              </a>
-              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                <i className="ri-team-line text-lg mr-2"></i>
-                Supportiaについて
-              </a>
-              <a href="#news" className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                <i className="ri-notification-3-line text-lg mr-2"></i>
-                新着情報
-              </a>
-              <a href="#blog" className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
-                <i className="ri-book-open-line text-lg mr-2"></i>
-                ブログ
-              </a>
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center"
+                  >
+                    <i className={`${item.icon} text-lg mr-2`}></i>
+                    {item.label}
+                  </a>
+                ))}
               </nav>
             </div>
             <div className="flex items-center space-x-4">
               <div className="hidden lg:flex items-center space-x-3 pr-4 mr-4 border-r border-slate-200">
-                <a
-                  href="https://www.instagram.com/kaneda_nurse_supportia/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-500 hover:border-rose-400 hover:text-rose-500 transition-colors cursor-pointer"
-                  aria-label="Instagram"
-                >
-                  <i className="ri-instagram-line text-base"></i>
-                </a>
-                <a
-                  href="https://lin.ee/4UoSWJa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-500 hover:border-emerald-400 hover:text-emerald-500 transition-colors cursor-pointer"
-                  aria-label="LINE"
-                >
-                  <i className="ri-line-fill text-base"></i>
-                </a>
-                <a
-                  href="https://www.facebook.com/nao18zero/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-500 hover:border-blue-400 hover:text-blue-500 transition-colors cursor-pointer"
-                  aria-label="Facebook"
-                >
-                  <i className="ri-facebook-fill text-base"></i>
-                </a>
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.aria}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-500 transition-colors cursor-pointer ${link.hoverColor}`}
+                    aria-label={link.aria}
+                  >
+                    <i className={`${link.icon} text-base`}></i>
+                  </a>
+                ))}
               </div>
               <a href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center">
                 <i className="ri-phone-line text-lg mr-1"></i>
                 お問い合わせ
               </a>
-              <button className="lg:hidden p-2">
-                <i className="ri-menu-line text-2xl text-gray-700"></i>
+              <button
+                className="lg:hidden p-2"
+                aria-label="メニューを開閉"
+                aria-expanded={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              >
+                <i className={`${isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} text-2xl text-gray-700`}></i>
               </button>
             </div>
           </div>
         </div>
       </header>
+
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[60]">
+          <div className="absolute inset-0 bg-black/30" onClick={() => setIsMobileMenuOpen(false)}></div>
+          <div className="relative ml-auto h-full w-72 max-w-[85%] bg-white shadow-2xl flex flex-col p-6">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center">
+                <img src={`${basePath}image/logo.png`} alt="Supportiaロゴ" className="h-10 w-10 object-contain" />
+                <span className="ml-3 font-semibold text-gray-800">Supportia</span>
+              </div>
+              <button aria-label="メニューを閉じる" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="ri-close-line text-2xl text-gray-700"></i>
+              </button>
+            </div>
+            <nav className="space-y-4 mb-8">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center text-gray-800 font-medium hover:text-blue-600"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <i className={`${item.icon} text-lg mr-3`}></i>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <a
+              href="/contact"
+              className="flex items-center justify-center px-4 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <i className="ri-phone-line text-lg mr-2"></i>
+              お問い合わせ
+            </a>
+            <div className="mt-6 border-t border-slate-200 pt-6">
+              <p className="text-sm text-gray-500 mb-4">SNS</p>
+              <div className="flex items-center space-x-3">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.aria}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-11 h-11 border border-slate-200 rounded-full flex items-center justify-center text-slate-500 transition-colors ${link.hoverColor}`}
+                    aria-label={link.aria}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <i className={`${link.icon} text-lg`}></i>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* メインビジュアル */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
